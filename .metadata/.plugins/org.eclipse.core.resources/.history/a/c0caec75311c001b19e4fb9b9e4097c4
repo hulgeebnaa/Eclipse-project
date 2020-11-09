@@ -1,0 +1,136 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+	String msg;
+	String characters = "0a1b2c3d4e5f6g7h8i9jklmnopqrstuvwxyz";
+	int egnee;
+	char[] posible = characters.toCharArray();
+	int[] indexs; //hargalzah table-d utga hargalzuulah indexuudiig hadgalah massiv
+	ArrayList<String> table1 = new ArrayList<>();
+	ArrayList<String> table2 = new ArrayList<>();
+	ArrayList<String> table3 = new ArrayList<>();
+	ArrayList<String> table4 = new ArrayList<>();
+	ArrayList<String> table5 = new ArrayList<>();
+	ArrayList<String> table6 = new ArrayList<>();
+	ArrayList<String> table7 = new ArrayList<>();
+	ArrayList<String> table8 = new ArrayList<>();
+
+	Main(String msg){
+		findAllChance();
+		this.msg = msg.replace(" ", "");
+		indexs = new int[msg.length()];
+		hashIndexGenerator();
+	}
+	
+	public void findAllChance() {
+		int q = 1;
+		for(int i=0;i<36;i++) {
+			for(int j=0;j<36;j++) {
+				for(int k=0;k<36;k++) {
+					for(int l=0;l<36;l++) {
+	                 String fourlengthStr = String.valueOf(posible[i]) + posible[j] + posible[k]+ posible[l] ; 
+	                         fillTables(fourlengthStr);
+                     q++;
+					}
+				}
+			}
+		}
+	}
+	
+	public void fillTables(String value) {
+		table1.add(value);
+		table2.add(value);
+		table3.add(value);
+		table4.add(value);
+		table5.add(value);
+		table6.add(value);
+		table7.add(value);
+		table8.add(value);
+	}	
+	
+	public void hashIndexGenerator() {  // hulgee -> [h][u][l][g][e][e] -> [000][111][222][333][444][555] = indexs[]         -> ene index-uudig tabledee harituulj shuune
+		char[] msgCharArray = msg.toCharArray();
+		int currentEgnee;
+		for(int i=0;i<msgCharArray.length;i++) {
+			currentEgnee = i+1;
+			indexs[i] = bodoh(currentEgnee,(int)msgCharArray[i]);
+		}
+	}
+	public int bodoh(int egnee, int usegniASCII) {
+		int hash1 = ((usegniASCII)%10);
+		if(hash1==0) {hash1+=10;}
+		int hash2 = usegniASCII * hash1;
+		int index = (hash2*egnee);
+		return index;
+	}
+	
+	public String hash() {
+		String[] hashCode= new String[8]; 
+		for(int i=0;i<indexs.length;i++) {
+			i++;
+			if(i==1 || i%8 == 1) { hashCode[0] = table1.get(indexs[i-1]);}
+			if(i==2 || i%8 == 2) { hashCode[1] = table2.get(indexs[i-1]);}
+			if(i==3 || i%8 == 3) { hashCode[2] = table3.get(indexs[i-1]);}
+			if(i==4 || i%8 == 4) { hashCode[3] = table4.get(indexs[i-1]);}
+			if(i==5 || i%8 == 5) { hashCode[4] = table5.get(indexs[i-1]);}
+			if(i==6 || i%8 == 6) { hashCode[5] = table6.get(indexs[i-1]);}
+			if(i==7 || i%8 == 7) { hashCode[6] = table7.get(indexs[i-1]);}
+			if(i==8 || i%8 == 0) { hashCode[7] = table8.get(indexs[i-1]);}
+			i--;
+		}
+		if(indexs.length < hashCode.length){
+			for(int i=hashCode.length;i>indexs.length;i--) {
+				i--;
+				hashCode[i] = table1.get(0);
+				i++;
+			}
+		}
+		
+		String finallyhash ;
+		for(int i=0;i<hashCode.length;i++) {
+			
+		}
+       return "";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	public void test() {
+		hashIndexGenerator();
+		for(int i=0;i<indexs.length;i++) {
+			//System.out.println(indexs[i]); 
+			}
+//System.out.println(id+ " " + ss); 
+	}
+	
+	
+public static void main(String args[]) {
+	Scanner input = new Scanner(System.in);
+	System.out.println("-- Hulgee's Hash Generatort tavtai morilno uu --"); 
+	System.out.println("Message ee oruulna uu : "); String msg = input.nextLine();
+	Main obj = new Main(msg);
+//	obj.hashIndexGenerator(msg);
+	//obj.test();
+//	obj.findAllChance();
+
+}
+}

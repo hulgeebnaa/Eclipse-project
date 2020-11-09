@@ -1,0 +1,9 @@
+package ZayaBagsh;
+
+public class notMain {
+	public static void main(String[] args) {
+		Mainn obj = new Mainn();
+//		obj.encryption();
+		obj.decryption();
+	}
+}
