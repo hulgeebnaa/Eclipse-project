@@ -155,7 +155,7 @@ public class Main {
 	
 public static void main(String args[]) {
 	Scanner input = new Scanner(System.in);
-	System.out.println("-- Welcome to my hash algorithm --"); 
+	System.out.println("-- Hulgee's Hash Generatort tavtai morilno uu --"); 
 	System.out.println("Message ee oruulna uu : "); String msg = input.nextLine();
 	Main obj = new Main(msg);
 //	obj.findAllChance();
